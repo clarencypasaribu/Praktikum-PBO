@@ -1,107 +1,51 @@
- /* Nama File : Mahasiswa.java
- * Deskripsi : Berisi atribut dan method dalam class mahasiswa
- * Pembuat : Clarency Christy Pasaribu / 24060123130113
- * Tanggal : Senin, 28 Februari 2025
- */
-
-import java.util.ArrayList;
-
-public class Mahasiswa{
-
-    /*Atribut */
+public class Mahasiswa extends CivitasAkademika{
+    //Atribut
+    private static int count = 0;
     private String NIM;
-    private String nama;
-    private String prodi;
-    ArrayList <MataKuliah> listMatkul;
-    private Dosen dosenWali;
-    private Kendaraan kendaraan;
+    private int semester;
+    private Fakultas fakultas;
 
-    /*Method */
-
-    public Mahasiswa() {
-        NIM = " ";
-        nama = " ";
-        prodi = " ";
-        listMatkul = new ArrayList<>(); 
+    //Method
+    public Mahasiswa(String nama, String email, String NIM, int semester, Fakultas fakultas) {
+        super(nama, email);
+        this.NIM = NIM;
+        this.semester = semester;
+        this.fakultas = fakultas;
+        count++;
     }
 
-    public Mahasiswa(String X, String Y, String Z) {
-        this.NIM = X;
-        this.nama = Y;
-        this.prodi = Z;
-        this.listMatkul = new ArrayList<>(); 
+    public static int getCount(){
+        return count;
     }
-
-    public String getNIM (){
+    public String getNIM(){
         return NIM;
     }
-
-    public String getNamaMhs(){
-        return nama;
+    public void setNIM(String NIM){
+        this.NIM = NIM;
     }
+    public int getSemester(){
+        return semester;
+    }
+    public void setSemester(int semester){
+        this.semester = semester;
+    }
+    public Fakultas getFakultas(){
+        return fakultas;
+    }
+    public void setFakultas(Fakultas fakultas){
+        this.fakultas = fakultas;}
     
-    public String getProdiMhs(){
-        return prodi;
+    public double hitungUKT() {
+        return fakultas.getBiaya_UKT() * Math.pow(0.95, semester - 1);
     }
 
-    public void setIdMatkul(String X){
-        NIM = X;
-    }
-
-    public void setNamaMatkul(String Y){
-        nama = Y;
-    }
-
-    public void setProdiMhs(String Z){
-        prodi = Z;
-    }
-
-    public void setDosenWali(Dosen dosenWali) {
-        this.dosenWali = dosenWali;
-    }
-
-    public void setKendaraan(Kendaraan kendaraan) {
-        this.kendaraan = kendaraan;
-    }
-
-    public void addMatKul(MataKuliah matkul) {
-        if (listMatkul.size() < 50) {
-            listMatkul.add(matkul); 
-        } else {
-            System.out.println("Maksimal 50 mata kuliah!");
-        }
-    }
-
-    public int getJumlahSKS() {
-        int totalSKS = 0;
-        for (MataKuliah matkul : listMatkul) {
-            totalSKS += matkul.getSKS();
-        }
-        return totalSKS;
-    }
-
-    public int getJumlahMatKul() {
-        return listMatkul.size();
-    }
-
-    public void printMhs() {
-        System.out.println("Mahasiswa: " + NIM + " - " + nama + " - " + prodi );
-    }
-
-    public void printDetailMhs() {
-        printMhs();
-        System.out.println("Jumlah Mata Kuliah: " + getJumlahMatKul());
-        System.out.println("Total SKS: " + getJumlahSKS());
-        System.out.println("Daftar Mata Kuliah:");
-        for (MataKuliah matkul : listMatkul) {
-            matkul.printMatKul();
-        }
-        if (dosenWali != null) {
-            dosenWali.printDosen();
-        }
-        if (kendaraan != null) {
-            kendaraan.printKendaraan();
-        }
-        System.out.println("------------------------------------------------");
+    @Override
+    public void printInfo() {
+        System.out.println("Nama: " + getNama());
+        System.out.println("Email : " + getEmail());
+        System.out.println("NIM: " + NIM);
+        System.out.println("Semester : " + semester);
+        System.out.println("Fakultas : " + fakultas.getNama());
+        System.out.println("UKT : " + hitungUKT());
     }
 }

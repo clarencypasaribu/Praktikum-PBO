@@ -1,56 +1,36 @@
- /* Nama File : Dosen.java
- * Deskripsi : Berisi atribut dan method dalam class Dosen
- * Pembuat : Clarency Christy Pasaribu / 24060123130113
- * Tanggal : Senin, 28 Februari 2025
- */
+public class Dosen extends Karyawan{
+    //Atribut
+    private static int count = 0;
+    private Fakultas fakultas;
 
-public class Dosen {
-    
-    /*Atribut */
-    private String NIP;
-    private String nama;
-    private String prodi;
-    
-    /*Method */
-
-    public Dosen(){
-        NIP = " ";
-        nama = " ";
-        prodi = " ";
+    //Method
+    public Dosen(String nama, String email, String NIP, int masa_kerja, Fakultas fakultas) {
+        super(nama, email, NIP, masa_kerja);
+        this.fakultas = fakultas;
+        count++;
     }
 
-    public Dosen (String X, String Y, String Z){
-        this.NIP = X;
-        this.nama = Y;
-        this.prodi = Z;
+    public static int getCount(){
+        return count;
+    }
+    public Fakultas getFakultas(){
+        return fakultas;
+    }
+    public void setFakultas(Fakultas fakultas){
+        this.fakultas = fakultas;
     }
 
-    public String getNIP (){
-        return NIP;
+    public double hitungGaji() {
+        return fakultas.getGaji_pokok() + (getMasaKerja() * 0.01 * fakultas.getGaji_pokok());
     }
 
-    public String getNamaDosen(){
-        return nama;
+    @Override
+    public void printInfo() {
+        System.out.println("Nama: " + getNama());
+        System.out.println("Email : " + getEmail());
+        System.out.println("NIP: " + getNIP());
+        System.out.println("Masa Kerja : " + getMasaKerja());
+        System.out.println("Fakultas : " + fakultas.getNama());
+        System.out.println("Gaji : " + hitungGaji());
     }
-    
-    public String getProdiDosen(){
-        return prodi;
-    }
-
-    public void setNIP(String X){
-        NIP = X;
-    }
-
-    public void setNamaDosen(String Y){
-        nama = Y;
-    }
-
-    public void setProdiDosen(String Z){
-        prodi = Z;
-    }
-
-    public void printDosen() {
-        System.out.println("Dosen: " + NIP + " - " + nama + " - " + prodi );
-    }
-
 }
