@@ -1,0 +1,20 @@
+public class Main {
+    public static void main(String[] args) {
+        PNS pns = new PNS("Eliza", LocalDate.of(2023, 10, 2), "Yogyakarta", 5000000, "123456");
+        Pengusaha pengusaha = new Pengusaha("Angel", LocalDate.of(2017, 3, 12), "Toraja", 4500000, "152673");
+        Petani petani = new Petani("Nico", LocalDate.of(2010, 8, 22), "Medan", 2000000, "Binjai");
+
+        System.out.println(-----PNS-----);
+        pns.cetakInfo();
+        System.out.println("Pajak: " + pns.hitungPajak());
+        System.out.println();
+
+        System.out.println(-----PENGUSAHA-----);
+        pengusaha.cetakInfo();
+        System.out.println("Pajak: " + pengusaha.hitungPajak());
+        System.out.println();
+
+        System.out.println(-----PETANI-----);
+        petani.cetakInfo();
+    }
+}
